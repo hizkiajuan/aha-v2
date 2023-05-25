@@ -1,8 +1,7 @@
 import './globals.css';
-import { Inter } from 'next/font/google';
+import Navigation from '@/app/ui/Navigation.tsx';
+import Link from 'next/link';
 import React from 'react';
-
-const inter = Inter({ subsets: ['latin'] });
 
 export const metadata = {
   title: 'Create Next App',
@@ -16,7 +15,23 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body>
+        <main className="flex gap-4">
+          <nav className="flex flex-col">
+            <div>
+              <Link href="/">LOGO</Link>
+            </div>
+            <Navigation
+              navLinks={[
+                { href: '/', name: 'Home' },
+                { href: '/tag', name: 'Tags' },
+              ]}
+            />
+          </nav>
+          {children}
+          <aside>FOLLOW</aside>
+        </main>
+      </body>
     </html>
   );
 }
