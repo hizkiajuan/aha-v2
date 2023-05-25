@@ -1,12 +1,14 @@
-import Link from 'next/link';
+import Search from '@/app/ui/home/Search.tsx';
+import SearchConfig from '@/app/ui/home/SearchConfig.tsx';
+import Button from '@/app/ui/shared/Button.tsx';
 import React from 'react';
 
 export default function Home(): React.JSX.Element {
   return (
     <section>
-      <div>search bar</div>
-      <div># of results per page</div>
-      <Link href="./result">search</Link>
+      <Search />
+      <SearchConfig />
+      <Button text="search" />
     </section>
   );
 }

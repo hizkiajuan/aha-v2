@@ -1,5 +1,6 @@
 import './globals.css';
 import Navigation from '@/app/ui/shared/Navigation.tsx';
+import Profile from '@/app/ui/shared/Profile.tsx';
 import Link from 'next/link';
 import React from 'react';
 
@@ -24,7 +25,7 @@ export default function RootLayout({
             />
           </nav>
           {children}
-          <aside>FOLLOW</aside>
+          <Profile />
         </main>
       </body>
     </html>
