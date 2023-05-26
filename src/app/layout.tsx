@@ -1,14 +1,19 @@
 import './globals.css';
+import Friend from '@/app/ui/shared/Friend.tsx';
+import { getFriendList } from '@/app/ui/shared/FriendService.ts';
+import { FriendType } from '@/app/ui/shared/FriendType.ts';
 import Navigation from '@/app/ui/shared/Navigation.tsx';
-import Profile from '@/app/ui/shared/Profile.tsx';
 import Link from 'next/link';
 import React from 'react';
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const followerList: FriendType[] = await getFriendList(false);
+  const followingList: FriendType[] = await getFriendList(true);
+
   return (
     <html lang="en">
       <body>
@@ -25,7 +30,7 @@ export default function RootLayout({
             />
           </nav>
           {children}
-          <Profile />
+          <Friend followerList={followerList} followingList={followingList} />
         </main>
       </body>
     </html>

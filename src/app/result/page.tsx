@@ -5,7 +5,7 @@ export default function Result(): React.JSX.Element {
   return (
     <>
       <article>img img img</article>
-      <Button text="more" />
+      <Button action="/result" text="more" />
     </>
   );
 }

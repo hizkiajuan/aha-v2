@@ -8,7 +8,7 @@ export default function Home(): React.JSX.Element {
     <section>
       <Search />
       <SearchConfig />
-      <Button text="search" />
+      <Button action="/result" text="search" />
     </section>
   );
 }
