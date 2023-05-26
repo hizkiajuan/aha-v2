@@ -3,17 +3,17 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
-type NavLink = {
+type NavLinkType = {
   href: string;
   name: string;
 };
 
-export default function Navigation({ navLinks }: { navLinks: NavLink[] }) {
+export default function Navigation({ navLinks }: { navLinks: NavLinkType[] }) {
   const pathname: string = usePathname();
 
   return (
     <>
-      {navLinks.map((link: NavLink) => {
+      {navLinks.map((link: NavLinkType) => {
         const isHomeLink: boolean = link.name === 'Home';
         const isResultPage: boolean = pathname === '/result';
         const isActive: boolean = pathname === link.href || (isHomeLink && isResultPage);
