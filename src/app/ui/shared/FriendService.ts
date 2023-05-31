@@ -15,7 +15,7 @@ export async function getFriendList(
 
   if (!response.ok) {
     // This will activate the closest `error.js` Error Boundary
-    throw new Error('Failed to fetch data');
+    throw new Error('Failed to fetch friend list');
   }
 
   const { data }: { data: FriendType[] } = await response.json();
