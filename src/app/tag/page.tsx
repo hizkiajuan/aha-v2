@@ -1,9 +1,17 @@
+import { getTagList } from '@/app/tag/TagService.ts';
+import { TagApiResponse } from '@/common/contract.ts';
 import React from 'react';
 
-export default function Tag(): React.JSX.Element {
+export default async function Tag(): Promise<React.JSX.Element> {
+  const tagList: TagApiResponse[] = await getTagList();
+
   return (
     <>
-      <article>grid grid grid</article>
+      <article>
+        {tagList?.map((tag: TagApiResponse) => (
+          <p key={tag.id}>{tag.name}</p>
+        ))}
+      </article>
     </>
   );
 }
