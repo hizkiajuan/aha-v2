@@ -1,7 +1,7 @@
 import { FriendType } from '@/app/ui/shared/FriendType.ts';
+import { FriendApiResponse } from '@/common/contract.ts';
 import http from '@/common/http.ts';
 
-// eslint-disable-next-line import/prefer-default-export
 export async function getFriendList(
   isFollowing: boolean,
 ): Promise<FriendType[]> {
@@ -15,10 +15,10 @@ export async function getFriendList(
 
   if (!response.ok) {
     // This will activate the closest `error.js` Error Boundary
-    throw new Error('Failed to fetch data');
+    throw new Error('Failed to fetch friend list');
   }
 
-  const { data }: { data: FriendType[] } = await response.json();
+  const { data }: FriendApiResponse = await response.json();
 
   return data;
 }
