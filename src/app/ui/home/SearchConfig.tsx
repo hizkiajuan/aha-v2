@@ -1,6 +1,13 @@
 import React from 'react';
 
-export default function SearchConfig(props: any): React.JSX.Element {
+type SearchConfigPropType = {
+  handleChangePageSize: (e: { target: HTMLInputElement }) => void;
+  pageSize: string;
+};
+
+export default function SearchConfig(
+  props: SearchConfigPropType,
+): React.JSX.Element {
   return (
     <section className="flex flex-col">
       <h2># Of Results Per Page</h2>

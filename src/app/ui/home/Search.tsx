@@ -1,6 +1,10 @@
 import React from 'react';
 
-export default function Search(props: any): React.JSX.Element {
+type SearchPropType = {
+  handleChangeKeyword: (e: { target: HTMLInputElement }) => void;
+};
+
+export default function Search(props: SearchPropType): React.JSX.Element {
   return (
     <section className="flex flex-col">
       <h2>Search</h2>
