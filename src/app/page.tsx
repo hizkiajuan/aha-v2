@@ -4,7 +4,7 @@ import Search from '@/app/ui/home/Search.tsx';
 import SearchConfig from '@/app/ui/home/SearchConfig.tsx';
 import { SearchFilterType } from '@/app/ui/home/SearchFilterType.ts';
 import Button from '@/app/ui/shared/Button.tsx';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import useSwr from 'swr';
 
 export default function Home(): React.JSX.Element {
@@ -32,17 +32,17 @@ export default function Home(): React.JSX.Element {
     const response: Response = await fetch(url);
     return response.json();
   };
-  const { data: result, mutate }: any = useSwr('search-result', fetcher);
+  const { data: result, mutate: handleSearch }: any = useSwr(
+    'search-result',
+    fetcher,
+  );
 
-  // search
-  const handleSearch = async () => {
-    mutate();
-    console.log('===result', result);
-
-    if (result.data.length > 0) {
+  useEffect(() => {
+    if (result?.data?.length > 0) {
+      console.log('===result', result);
       // TODO: redirect to `/result`, brings the data
     }
-  };
+  }, [result]);
 
   return (
     <section>
@@ -52,6 +52,11 @@ export default function Home(): React.JSX.Element {
         pageSize={pageSize}
       />
       <Button action={handleSearch} text="search" />
+      <>
+        {result?.data?.map((r: any) => (
+          <p key={r.id}>{r.username}</p>
+        ))}
+      </>
     </section>
   );
 }
