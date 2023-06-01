@@ -15,3 +15,9 @@ export type SearchApiResponse = ApiResponse & {
 export type FriendApiResponse = ApiResponse & {
   data: FriendType[];
 };
+
+export type TagApiResponse = {
+  id: string;
+  name: string;
+  count: number;
+};
