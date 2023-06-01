@@ -5,10 +5,11 @@ import SearchConfig from '@/app/ui/home/SearchConfig.tsx';
 import { SearchFilterType } from '@/app/ui/home/SearchFilterType.ts';
 import { SearchState, useSearchStore } from '@/app/ui/home/SearchStore.ts';
 import Button from '@/app/ui/shared/Button.tsx';
+import { SearchApiResponse } from '@/common/contract.ts';
 import { AppRouterInstance } from 'next/dist/shared/lib/app-router-context';
 import { useRouter } from 'next/navigation';
 import React, { useEffect, useState } from 'react';
-import useSwr from 'swr';
+import useSwr, { Fetcher } from 'swr';
 
 export default function Home(): React.JSX.Element {
   const [keyword, setKeyword] = useState('');
@@ -21,7 +22,9 @@ export default function Home(): React.JSX.Element {
   };
 
   // swr
-  const fetcher = async () => {
+  const fetcher: Fetcher<
+    SearchApiResponse
+  > = async (): Promise<SearchApiResponse> => {
     const params: SearchFilterType = {
       page: '1',
       pageSize,
@@ -35,7 +38,7 @@ export default function Home(): React.JSX.Element {
     const response: Response = await fetch(url);
     return response.json();
   };
-  const { data: result, mutate: handleSearch }: any = useSwr('search', fetcher);
+  const { data: result, mutate: handleSearch } = useSwr('search', fetcher);
 
   // store
   const [updateSearchResult] = useSearchStore((state: SearchState) => [
@@ -43,8 +46,9 @@ export default function Home(): React.JSX.Element {
   ]);
   const router: AppRouterInstance = useRouter();
 
-  useEffect(() => {
-    if (result?.data?.length > 0) {
+  useEffect((): void => {
+    const resultLength: number = result?.data?.length || 0;
+    if (result && resultLength > 0) {
       updateSearchResult(result.data);
       router.push('/result');
     }

@@ -6,7 +6,6 @@ import Button from '@/app/ui/shared/Button.tsx';
 import React from 'react';
 
 export default function Result(): React.JSX.Element {
-  // @ts-ignore
   const [searchResult]: [searchResult: SearchType[]] = useSearchStore(
     (state: SearchState) => [state.searchResult],
   );

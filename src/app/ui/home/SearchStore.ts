@@ -6,7 +6,6 @@ export interface SearchState {
   updateSearchResult: (searchResult: SearchType[]) => void;
 }
 
-// eslint-disable-next-line import/prefer-default-export
 export const useSearchStore = create<SearchState>()((set) => ({
   searchResult: [],
   updateSearchResult: (searchResult: SearchType[]) => set(() => ({ searchResult })),

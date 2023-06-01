@@ -1,8 +1,12 @@
 import Link from 'next/link';
 import React from 'react';
+import { KeyedMutator } from 'swr';
 
 type ButtonType = {
-  action: string | Function;
+  action:
+    | string
+    | React.MouseEventHandler<HTMLButtonElement>
+    | KeyedMutator<any>;
   text: string;
   type?: 'default' | 'outlined' | 'contained';
 };
@@ -18,12 +22,11 @@ export default function Button({
     style = 'rounded-2xl border border-amber-200';
   }
 
-  return typeof action === 'function' ? (
-    // @ts-ignore
-    <button onClick={action}>{text}</button>
-  ) : (
+  return typeof action === 'string' ? (
     <Link href={action} className={style}>
       {text}
     </Link>
+  ) : (
+    <button onClick={action}>{text}</button>
   );
 }
