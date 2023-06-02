@@ -9,15 +9,22 @@ module.exports = {
   ],
   theme: {
     extend: {
-      fontFamily: {
-        sans: ['Ubuntu', 'Open Sans', ...defaultTheme.fontFamily.sans],
+      backgroundImage: {
+        'aha-menu': 'url("/menu.svg")',
+        'aha-menu-alt': 'url("/menu-alt.svg")',
       },
       colors: {
-        ahaBlack: {
+        'aha-black': {
           300: '#1B1B1B',
           400: '#181818',
           500: '#121212',
         },
+        'aha-blue': {
+          400: '#00D1FF',
+        },
+      },
+      fontFamily: {
+        sans: ['Ubuntu', 'Open Sans', ...defaultTheme.fontFamily.sans],
       },
     },
     screens: {

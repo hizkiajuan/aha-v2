@@ -10,15 +10,15 @@ export default function SearchConfig(
 ): React.JSX.Element {
   return (
     <section className="flex flex-col">
-      <h2 className="mt-7 block h-9 text-2xl leading-9">
+      <h2 className="mt-7 block h-9 text-2xl leading-9 sm:mt-[30px]">
         # Of Results Per Page
       </h2>
-      <h3 className="mt-4 flex">
+      <h3 className="mt-4 flex sm:mt-5">
         <span className="mr-2.5 h-[50px] text-5xl font-bold">
           {props.pageSize}
         </span>
-        <span className="mb-1 h-[24px] self-end text-base leading-[24px] tracking-[.15px]">
-          result
+        <span className="mb-1 h-[24px] self-end text-base leading-[24px] tracking-[.15px] sm:mb-[5px]">
+          result{+props.pageSize > 1 ? 's' : ''}
         </span>
       </h3>
       <input
@@ -27,6 +27,7 @@ export default function SearchConfig(
         className="border"
         onChange={props.handleChangePageSize}
       />
+      <hr className="mt-5 hidden border border-white/[.1] sm:block" />
     </section>
   );
 }

@@ -5,7 +5,7 @@
 @tailwind utilities;
 
 body {
-  @apply bg-ahaBlack-400 text-white;
+  @apply bg-aha-black-400 text-white;
 }
 
 .aha-logo {

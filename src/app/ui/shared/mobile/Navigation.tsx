@@ -20,7 +20,7 @@ export default function Navigation() {
 
   return (
     <nav className="absolute -z-10 flex h-screen flex-col justify-between sm:hidden">
-      <section className="h-[70px] w-screen bg-ahaBlack-400 px-[21px] pb-[27px] pt-7">
+      <section className="h-[70px] w-screen bg-aha-black-400 px-[21px] pb-[27px] pt-7">
         <Link href="/" className="aha-logo">
           LOGO
         </Link>

@@ -22,7 +22,7 @@ export default function Friend({
 
   return (
     <aside
-      className={`flex-col lg:flex ${hidden} hidden w-[375px] bg-amber-200`}
+      className={`flex-col lg:flex ${hidden} hidden max-h-screen w-[375px] bg-amber-200`}
     >
       <h2>Followers</h2>
       {followerList.map((f: FriendType) => (

@@ -29,7 +29,7 @@ export default function Home(): React.JSX.Element {
   };
 
   return (
-    <section className="absolute flex h-full w-full flex-col justify-between px-5 pb-[66px] pt-[70px] sm:mt-0">
+    <section className="absolute mt-0 flex h-full w-full flex-col justify-between px-5 pb-[66px] pt-[70px] sm:relative sm:h-auto sm:w-auto sm:grow sm:px-[130px] sm:pb-[87px] sm:pt-[54px]">
       <div>
         <Search handleChangeKeyword={handleChangeKeyword} />
         <SearchConfig
@@ -37,8 +37,8 @@ export default function Home(): React.JSX.Element {
           pageSize={pageSize}
         />
       </div>
-      <div className="pb-6">
-        <hr className="mb-[80px] border border-white/[.1]" />
+      <div className="pb-6 sm:pb-0">
+        <hr className="mb-[80px] border border-white/[.1] sm:hidden" />
         <Button action={handleSearch} text="search" type="outlined" />
       </div>
     </section>
