@@ -28,12 +28,11 @@ export default async function Result(): Promise<React.JSX.Element> {
 
   useEffect(() => {
     if (keyword) {
-      const fetchResultList = async () =>
-        getResultList({
-          page: '1',
-          keyword,
-          pageSize,
-        });
+      const fetchResultList = async () => getResultList({
+        page: '1',
+        keyword,
+        pageSize,
+      });
 
       fetchResultList().then((resp) => {
         setRes(resp);

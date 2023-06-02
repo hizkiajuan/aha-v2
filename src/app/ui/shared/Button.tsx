@@ -1,12 +1,8 @@
 import Link from 'next/link';
 import React from 'react';
-import { KeyedMutator } from 'swr';
 
 type ButtonType = {
-  action:
-    | string
-    | React.MouseEventHandler<HTMLButtonElement>
-    | KeyedMutator<any>;
+  action: string | React.MouseEventHandler<HTMLButtonElement>;
   text: string;
   type?: 'default' | 'outlined' | 'contained';
 };
