@@ -7,14 +7,13 @@ import React from 'react';
 type NavLinkType = {
   href: string;
   name: string;
-  src: string;
 };
 
-export default function Navigation() {
+export default function Navigation(): React.JSX.Element {
   const pathname: string = usePathname();
   const navLinks: NavLinkType[] = [
-    { href: '/', name: 'Home', src: '/menu.svg' },
-    { href: '/tag', name: 'Tags', src: '/menu-alt.svg' },
+    { href: '/', name: 'Home' },
+    { href: '/tag', name: 'Tags' },
   ];
 
   return (

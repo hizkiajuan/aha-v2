@@ -15,7 +15,8 @@ export default function Button({
   let style: string = 'block bg-amber-200';
 
   if (type === 'outlined') {
-    style = 'block w-full max-w-[343px] h-10 rounded bg-white text-aha-black-500 font-bold uppercase text-[14px]';
+    style = `block w-full max-w-[343px] h-10 rounded
+      bg-white hover:bg-aha-black-500 text-aha-black-500 hover:text-white hover:border hover:border-white font-bold uppercase text-[14px]`;
   }
 
   return typeof action === 'string' ? (

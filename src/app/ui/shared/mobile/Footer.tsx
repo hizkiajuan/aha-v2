@@ -8,23 +8,17 @@ import React from 'react';
 type NavLinkType = {
   href: string;
   name: string;
-  src: string;
 };
 
-export default function Navigation() {
+export default function Footer(): React.JSX.Element {
   const pathname: string = usePathname();
   const navLinks: NavLinkType[] = [
-    { href: '/', name: 'Home', src: '/menu.svg' },
-    { href: '/tag', name: 'Tags', src: '/menu-alt.svg' },
+    { href: '/', name: 'Home' },
+    { href: '/tag', name: 'Tags' },
   ];
 
   return (
-    <nav className="absolute -z-10 flex h-screen flex-col justify-between sm:hidden">
-      <section className="h-[70px] w-screen bg-aha-black-400 px-[21px] pb-[27px] pt-7">
-        <Link href="/" className="aha-logo">
-          LOGO
-        </Link>
-      </section>
+    <nav className="flex h-[66px] flex-col justify-between sm:hidden">
       <section className="aha-nav-bottom">
         {navLinks.map((link: NavLinkType) => {
           const isHomeLink: boolean = link.name === 'Home';
@@ -37,7 +31,12 @@ export default function Navigation() {
               href={link.href}
               key={link.name}
             >
-              <Image src={link.src} alt={link.name} width={24} height={24} />
+              <Image
+                src={`/${isActive ? 'menu.svg' : 'menu-alt.svg'}`}
+                alt={link.name}
+                width={24}
+                height={24}
+              />
             </Link>
           );
         })}

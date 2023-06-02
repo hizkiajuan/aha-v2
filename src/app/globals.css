@@ -19,7 +19,7 @@ body {
 }
 
 .aha-nav-bottom {
-  @apply flex h-[66px] items-center justify-center gap-[50px];
+  @apply flex h-full items-center justify-center gap-[50px];
 
   background: rgba(24, 24, 24, 0.2);
   box-shadow: inset 0 0.5px 0 rgba(0, 0, 0, 0.8);
