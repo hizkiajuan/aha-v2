@@ -9,7 +9,7 @@ import React, { useState } from 'react';
 
 export default function Home(): React.JSX.Element {
   const [keyword, setKeyword] = useState('');
-  const [pageSize, setPageSize] = useState('');
+  const [pageSize, setPageSize] = useState('30');
 
   const handleChangeKeyword = (e: { target: HTMLInputElement }): void => {
     setKeyword(e.target.value.trim());
@@ -29,13 +29,18 @@ export default function Home(): React.JSX.Element {
   };
 
   return (
-    <section>
-      <Search handleChangeKeyword={handleChangeKeyword} />
-      <SearchConfig
-        handleChangePageSize={handleChangePageSize}
-        pageSize={pageSize}
-      />
-      <Button action={handleSearch} text="search" />
+    <section className="absolute flex h-full w-full flex-col justify-between px-5 pb-[66px] pt-[70px] sm:mt-0">
+      <div>
+        <Search handleChangeKeyword={handleChangeKeyword} />
+        <SearchConfig
+          handleChangePageSize={handleChangePageSize}
+          pageSize={pageSize}
+        />
+      </div>
+      <div className="pb-6">
+        <hr className="mb-[80px] border border-white/[.1]" />
+        <Button action={handleSearch} text="search" type="outlined" />
+      </div>
     </section>
   );
 }

@@ -21,7 +21,9 @@ export default function Friend({
   const handleFollow = () => console.log('follow...');
 
   return (
-    <aside className={`flex flex-col ${hidden}`}>
+    <aside
+      className={`flex-col lg:flex ${hidden} hidden w-[375px] bg-amber-200`}
+    >
       <h2>Followers</h2>
       {followerList.map((f: FriendType) => (
         <div className="flex items-start" key={f.id}>
