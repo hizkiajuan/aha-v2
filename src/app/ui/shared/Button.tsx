@@ -15,7 +15,8 @@ export default function Button({
   let style: string = 'block bg-amber-200';
 
   if (type === 'outlined') {
-    style = 'rounded-2xl border border-amber-200';
+    style = `block w-full max-w-[343px] h-10 rounded
+      bg-white hover:bg-aha-black-500 text-aha-black-500 hover:text-white hover:border hover:border-white font-bold uppercase text-[14px]`;
   }
 
   return typeof action === 'string' ? (
@@ -23,6 +24,8 @@ export default function Button({
       {text}
     </Link>
   ) : (
-    <button onClick={action}>{text}</button>
+    <button onClick={action} className={style}>
+      {text}
+    </button>
   );
 }

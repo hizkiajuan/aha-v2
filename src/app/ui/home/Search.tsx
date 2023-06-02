@@ -7,13 +7,16 @@ type SearchPropType = {
 export default function Search(props: SearchPropType): React.JSX.Element {
   return (
     <section className="flex flex-col">
-      <h2>Search</h2>
+      <h2 className="mb-4 block h-9 w-[73px] text-2xl capitalize leading-9 sm:mb-5">
+        Search
+      </h2>
       <input
         type="text"
         name="search"
-        className="border"
+        className="h-[60px]"
         onChange={props.handleChangeKeyword}
       />
+      <hr className="mt-[30px] hidden border border-white/[.1] sm:block" />
     </section>
   );
 }
