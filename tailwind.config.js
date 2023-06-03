@@ -22,6 +22,9 @@ module.exports = {
         'aha-blue': {
           400: '#00D1FF',
         },
+        'aha-grey': {
+          400: '#B2B2B2',
+        },
       },
       fontFamily: {
         sans: ['Ubuntu', 'Open Sans', ...defaultTheme.fontFamily.sans],
