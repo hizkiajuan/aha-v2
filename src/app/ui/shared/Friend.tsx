@@ -15,14 +15,14 @@ export default function Friend({
   followingList,
 }: FriendParamType): React.JSX.Element {
   const pathname: string = usePathname();
-  const hidden: string = pathname === '/tag' ? '' : 'lg:flex';
+  const lgClass: string = pathname === '/tag' ? '' : 'lg:flex';
 
   // eslint-disable-next-line no-console
   const handleFollow = () => console.log('follow...');
 
   return (
     <aside
-      className={`flex-col ${hidden} hidden max-h-screen w-[375px] bg-amber-200`}
+      className={`flex grow flex-col ${lgClass} hidden max-h-screen w-[375px] overflow-y-scroll bg-aha-black-300`}
     >
       <h2>Followers</h2>
       {followerList.map((f: FriendType) => (
