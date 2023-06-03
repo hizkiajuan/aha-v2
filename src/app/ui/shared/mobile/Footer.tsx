@@ -18,7 +18,11 @@ export default function Footer(): React.JSX.Element {
   ];
 
   return (
-    <nav className="flex h-[66px] flex-col justify-between sm:hidden">
+    <nav
+      className={`${
+        pathname === '/' ? 'flex' : 'hidden'
+      } h-[66px] flex-col justify-between sm:hidden`}
+    >
       <section className="aha-nav-bottom">
         {navLinks.map((link: NavLinkType) => {
           const isHomeLink: boolean = link.name === 'Home';
