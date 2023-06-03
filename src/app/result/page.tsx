@@ -74,7 +74,7 @@ export default async function Result({
                 width={335}
                 height={222.67}
               />
-              <h2 className="mt-5 text-[15px] leading-[22px] tracking-[0.14px]">
+              <h2 className="mt-5 truncate text-[15px] leading-[22px] tracking-[0.14px]">
                 {searchResult.name}
               </h2>
               <label className="text-[11px] leading-[17px] tracking-[0.37px] text-aha-grey-400">

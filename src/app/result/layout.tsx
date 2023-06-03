@@ -8,7 +8,7 @@ export default function ResultLayout({
   children: React.ReactNode;
 }) {
   return (
-    <section className="mt-[70px] flex grow flex-col sm:mt-0 sm:overflow-scroll">
+    <section className="mt-[70px] flex grow flex-col sm:mt-0 sm:overflow-y-scroll">
       <h1 className="block px-5 pb-6 pt-5 text-2xl leading-9 sm:hidden">
         Results
       </h1>
