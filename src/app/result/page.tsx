@@ -1,12 +1,13 @@
 'use client';
 
 import Loading from '@/app/result/loading.tsx';
-import { SearchFilterType } from '@/app/ui/home/SearchFilterType.ts';
-import { getSearchResultList } from '@/app/ui/home/SearchService.ts';
-import { SearchType } from '@/app/ui/home/SearchType.ts';
-import Button from '@/app/ui/shared/Button.tsx';
-import { ImageWithFallback } from '@/common/ImageWithFallback.tsx';
+import { getSearchResultList } from '@/app/ui/home/services/SearchService.ts';
+import { SearchFilterType } from '@/app/ui/home/types/SearchFilterType.ts';
+import { SearchType } from '@/app/ui/home/types/SearchType.ts';
+import Button from '@/app/ui/shared/components/Button.tsx';
+import { ImageWithFallback } from '@/app/ui/shared/components/ImageWithFallback.tsx';
 import { SearchApiResponse } from '@/common/contract.ts';
+import { fallbackImgSrc } from '@/common/helper.ts';
 import React, { Suspense, useEffect, useState } from 'react';
 
 export default async function Result({
@@ -43,24 +44,6 @@ export default async function Result({
     }
   }, [page, searchParams]);
 
-  const fallbackSrc = (idx: number): string => {
-    const firstColIdx: number = 0;
-    const secondColIdx: number = 1;
-    const thirdColIdx: number = 2;
-    const diff: number = 3;
-    let path: string = '/fallback-01.png';
-
-    if ((idx + diff) % diff === firstColIdx) {
-      path = '/fallback-01.png';
-    } else if ((idx + diff) % diff === secondColIdx) {
-      path = '/fallback-02.png';
-    } else if ((idx + diff) % diff === thirdColIdx) {
-      path = '/fallback-03.png';
-    }
-
-    return path;
-  };
-
   return (
     <div className="px-5 pb-6 sm:px-[130px]">
       <article className="grid grid-cols-1 sm:mb-10 sm:grid-cols-3 sm:gap-x-[34px] sm:gap-y-10">
@@ -69,7 +52,7 @@ export default async function Result({
             <div key={searchResult.id} className="mb-10 sm:mb-0">
               <ImageWithFallback
                 src={searchResult.avater}
-                fallbackSrc={fallbackSrc(idx)}
+                fallbackSrc={fallbackImgSrc(idx)}
                 alt={searchResult.name}
                 width={335}
                 height={222.67}
@@ -85,7 +68,7 @@ export default async function Result({
         </Suspense>
       </article>
       {searchResultList.length < totalResult && (
-        <Button action={handleLoadMore} text="more" type="outlined" />
+        <Button action={handleLoadMore} text="more" />
       )}
     </div>
   );

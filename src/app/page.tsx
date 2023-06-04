@@ -2,7 +2,7 @@
 
 import Search from '@/app/ui/home/Search.tsx';
 import SearchConfig from '@/app/ui/home/SearchConfig.tsx';
-import Button from '@/app/ui/shared/Button.tsx';
+import Button from '@/app/ui/shared/components/Button.tsx';
 import { AppRouterInstance } from 'next/dist/shared/lib/app-router-context';
 import { useRouter } from 'next/navigation';
 import React, { useState } from 'react';
@@ -39,7 +39,7 @@ export default function Home(): React.JSX.Element {
       </div>
       <div className="pb-6 sm:pb-0">
         <hr className="mb-[80px] border border-white/[.1] sm:hidden" />
-        <Button action={handleSearch} text="search" type="outlined" />
+        <Button action={handleSearch} variant="text" text="search" />
       </div>
     </section>
   );
