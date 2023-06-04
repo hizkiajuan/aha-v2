@@ -25,8 +25,12 @@ export default async function Result({
 
   useEffect(() => {
     const { keyword, pageSize }: SearchFilterType = searchParams;
+    // eslint-disable-next-line no-console
+    console.log('===useEffect');
 
     if (keyword) {
+      // eslint-disable-next-line no-console
+      console.log('===keyword', keyword);
       const fetchSearchResultList = async (): Promise<SearchApiResponse> => getSearchResultList({
         keyword,
         page,
@@ -34,6 +38,8 @@ export default async function Result({
       });
 
       fetchSearchResultList().then((response: SearchApiResponse): void => {
+        // eslint-disable-next-line no-console
+        console.log('===then', response);
         const { data, total }: { data: SearchType[]; total: number } = response;
         setSearchResultList((currentSearchResultList: SearchType[]) => [
           ...currentSearchResultList,
