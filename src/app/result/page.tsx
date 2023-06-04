@@ -20,8 +20,7 @@ export default async function Result(): Promise<React.JSX.Element> {
     setPage(`${+page + 1}`);
   };
 
-  // eslint-disable-next-line consistent-return
-  useEffect((): any => {
+  useEffect(() => {
     const keyword: string = searchParams.get('keyword') || '';
     const pageSize: string = searchParams.get('pageSize') || '30';
 
@@ -39,11 +38,6 @@ export default async function Result(): Promise<React.JSX.Element> {
           ...data,
         ]);
         setTotalResult(total);
-      });
-
-      return () => ({
-        keyword,
-        pageSize,
       });
     }
   }, [page, searchParams]);
