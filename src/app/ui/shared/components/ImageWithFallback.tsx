@@ -1,3 +1,4 @@
+import { LOADING_INDICATOR } from '@/common/constant.ts';
 import Image from 'next/image';
 import React, { useState } from 'react';
 
@@ -12,6 +13,8 @@ export const ImageWithFallback = (props: any) => {
       onError={(): void => {
         setImgSrc(fallbackSrc);
       }}
+      placeholder="blur"
+      blurDataURL={`data:image/png;base64,${LOADING_INDICATOR}`}
       {...rest}
     />
   );
