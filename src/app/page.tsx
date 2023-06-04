@@ -11,21 +11,23 @@ export default function Home(): React.JSX.Element {
   const [keyword, setKeyword] = useState('');
   const [pageSize, setPageSize] = useState('30');
 
-  const handleChangeKeyword = (e: { target: HTMLInputElement }): void => {
-    setKeyword(e.target.value.trim());
+  const handleChangeKeyword = (e: React.SyntheticEvent): void => {
+    setKeyword((e.target as HTMLInputElement).value.trim());
   };
-  const handleChangePageSize = (e: { target: HTMLInputElement }): void => {
-    setPageSize(e.target.value);
+  const handleChangePageSize = (e: Event): void => {
+    setPageSize((e.target as HTMLInputElement).value);
   };
 
   const router: AppRouterInstance = useRouter();
   const handleSearch = (): void => {
-    const searchParams: string = new URLSearchParams({
-      keyword,
-      pageSize,
-    }).toString();
-    const url: string = `/result?${searchParams}`;
-    router.push(url);
+    if (keyword && +pageSize > 0) {
+      const searchParams: string = new URLSearchParams({
+        keyword,
+        pageSize,
+      }).toString();
+      const url: string = `/result?${searchParams}`;
+      router.push(url);
+    }
   };
 
   return (

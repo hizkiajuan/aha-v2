@@ -1,13 +1,54 @@
-import React from 'react';
+'use client';
+
+import { Slider } from '@mui/material';
+import React, { useEffect } from 'react';
 
 type SearchConfigPropType = {
-  handleChangePageSize: (e: { target: HTMLInputElement }) => void;
+  handleChangePageSize: (e: Event) => void;
   pageSize: string;
+};
+
+type SliderMarkType = {
+  value: number;
+  label: string;
 };
 
 export default function SearchConfig(
   props: SearchConfigPropType,
 ): React.JSX.Element {
+  const marks: SliderMarkType[] = [
+    { value: 3, label: '3' },
+    { value: 6, label: '6' },
+    { value: 9, label: '9' },
+    { value: 12, label: '12' },
+    { value: 15, label: '15' },
+    { value: 50, label: '50' },
+  ];
+
+  useEffect(() => {
+    const markLabel = document.querySelectorAll(
+      '.MuiSlider-root.aha-slider .MuiSlider-markLabel',
+    );
+    markLabel.forEach((ml: Element): void => {
+      // eslint-disable-next-line no-param-reassign
+      (ml as HTMLElement).style.color = '#FFF';
+      // eslint-disable-next-line no-param-reassign
+      (ml as HTMLElement).style.opacity = '0.5';
+    });
+
+    const markLabelActive = document.querySelectorAll(
+      '.MuiSlider-root.aha-slider .MuiSlider-markLabelActive',
+    );
+    markLabelActive.forEach((mla: Element): void => {
+      if (+mla.innerHTML === +props.pageSize) {
+        // eslint-disable-next-line no-param-reassign
+        (mla as HTMLElement).style.color = '#FFF';
+        // eslint-disable-next-line no-param-reassign
+        (mla as HTMLElement).style.opacity = '1';
+      }
+    });
+  });
+
   return (
     <section className="flex flex-col">
       <h2 className="min-h-9 mt-7 block text-2xl leading-9 sm:mt-[30px]">
@@ -21,11 +62,14 @@ export default function SearchConfig(
           results
         </span>
       </h3>
-      <input
-        type="number"
-        name="size"
-        className="border"
+      <Slider
         onChange={props.handleChangePageSize}
+        defaultValue={30}
+        step={1}
+        marks={marks}
+        min={3}
+        max={50}
+        className="aha-slider"
       />
       <hr className="mt-5 hidden border border-white/[.1] sm:block" />
     </section>
