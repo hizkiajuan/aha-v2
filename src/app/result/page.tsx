@@ -8,6 +8,7 @@ import Button from '@/app/ui/shared/components/Button.tsx';
 import { ImageWithFallback } from '@/app/ui/shared/components/ImageWithFallback.tsx';
 import { SearchApiResponse } from '@/common/contract.ts';
 import { fallbackImgSrc } from '@/common/helper.ts';
+import { useSearchParams } from 'next/navigation';
 import React, { Suspense, useEffect, useState } from 'react';
 
 export default async function Result({
@@ -18,6 +19,15 @@ export default async function Result({
   const [page, setPage] = useState('1');
   const [totalResult, setTotalResult] = useState(0);
   const [searchResultList, setSearchResultList] = useState([] as SearchType[]);
+
+  // eslint-disable-next-line no-console
+  console.log('===outside, searchParams', searchParams);
+
+  const sp = useSearchParams();
+  // eslint-disable-next-line no-console
+  console.log('===outside, sp:keyword', sp.get('keyword'));
+  // eslint-disable-next-line no-console
+  console.log('===outside, sp:pageSize', sp.get('pageSize'));
 
   const handleLoadMore = (): void => {
     setPage(`${+page + 1}`);
