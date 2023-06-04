@@ -49,7 +49,9 @@ export default function Friend({
       'text-aha-grey-600 capitalize text-base tracking-[0.15px] font-normal',
   };
 
+  // eslint-disable-next-line no-console
   const handleFollow = (): void => console.log('action:follow');
+  // eslint-disable-next-line no-console
   const handleUnfollow = (): void => console.log('action:unfollow');
   const renderFriendList = (friendList: FriendType[]) => friendList.map((f: FriendType) => (
       <div className="flex items-center justify-between" key={f.id}>
