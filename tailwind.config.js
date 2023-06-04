@@ -25,6 +25,7 @@ module.exports = {
         },
         'aha-grey': {
           400: '#B2B2B2',
+          600: '#929292',
         },
       },
       fontFamily: {

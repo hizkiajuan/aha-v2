@@ -1,4 +1,4 @@
-import { FriendType } from '@/app/ui/shared/FriendType.ts';
+import { FriendType } from '@/app/ui/shared/types/FriendType.ts';
 import { FriendApiResponse } from '@/common/contract.ts';
 import http from '@/common/http.ts';
 

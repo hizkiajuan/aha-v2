@@ -1,4 +1,4 @@
-import { SearchFilterType } from '@/app/ui/home/SearchFilterType.ts';
+import { SearchFilterType } from '@/app/ui/home/types/SearchFilterType.ts';
 import { SearchApiResponse } from '@/common/contract.ts';
 import http from '@/common/http.ts';
 

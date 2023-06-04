@@ -1,10 +1,10 @@
 import './globals.css';
 import Friend from '@/app/ui/shared/Friend.tsx';
-import { getFriendList } from '@/app/ui/shared/FriendService.ts';
-import { FriendType } from '@/app/ui/shared/FriendType.ts';
 import NavigationDesktop from '@/app/ui/shared/Navigation.tsx';
 import Footer from '@/app/ui/shared/mobile/Footer.tsx';
 import Header from '@/app/ui/shared/mobile/Header.tsx';
+import { getFriendList } from '@/app/ui/shared/services/FriendService.ts';
+import { FriendType } from '@/app/ui/shared/types/FriendType.ts';
 import React from 'react';
 
 export default async function RootLayout({

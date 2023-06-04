@@ -1,5 +1,5 @@
-import { getTagList } from '@/app/tag/TagService.ts';
 import Loading from '@/app/tag/loading.tsx';
+import { getTagList } from '@/app/tag/services/TagService.ts';
 import { TagApiResponse } from '@/common/contract.ts';
 import React, { Suspense } from 'react';
 
