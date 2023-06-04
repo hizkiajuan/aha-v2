@@ -6,8 +6,6 @@ export async function getSearchResultList(
   params: SearchFilterType,
 ): Promise<SearchApiResponse> {
   const response: Response = await http.get('api/users/all', params);
-  // eslint-disable-next-line no-console
-  console.log('===response', response);
 
   if (!response.ok) {
     // This will activate the closest `error.js` Error Boundary

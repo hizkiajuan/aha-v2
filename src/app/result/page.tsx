@@ -2,45 +2,29 @@
 
 import Loading from '@/app/result/loading.tsx';
 import { getSearchResultList } from '@/app/ui/home/services/SearchService.ts';
-import { SearchFilterType } from '@/app/ui/home/types/SearchFilterType.ts';
 import { SearchType } from '@/app/ui/home/types/SearchType.ts';
 import Button from '@/app/ui/shared/components/Button.tsx';
 import { ImageWithFallback } from '@/app/ui/shared/components/ImageWithFallback.tsx';
 import { SearchApiResponse } from '@/common/contract.ts';
 import { fallbackImgSrc } from '@/common/helper.ts';
-import { useSearchParams } from 'next/navigation';
+import { ReadonlyURLSearchParams, useSearchParams } from 'next/navigation';
 import React, { Suspense, useEffect, useState } from 'react';
 
-export default async function Result({
-  searchParams,
-}: {
-  searchParams: SearchFilterType;
-}): Promise<React.JSX.Element> {
+export default async function Result(): Promise<React.JSX.Element> {
+  const searchParams: ReadonlyURLSearchParams = useSearchParams();
   const [page, setPage] = useState('1');
   const [totalResult, setTotalResult] = useState(0);
   const [searchResultList, setSearchResultList] = useState([] as SearchType[]);
-
-  // eslint-disable-next-line no-console
-  console.log('===outside, searchParams', searchParams);
-
-  const sp = useSearchParams();
-  // eslint-disable-next-line no-console
-  console.log('===outside, sp:keyword', sp.get('keyword'));
-  // eslint-disable-next-line no-console
-  console.log('===outside, sp:pageSize', sp.get('pageSize'));
 
   const handleLoadMore = (): void => {
     setPage(`${+page + 1}`);
   };
 
   useEffect(() => {
-    const { keyword, pageSize }: SearchFilterType = searchParams;
-    // eslint-disable-next-line no-console
-    console.log('===useEffect');
+    const keyword: string = searchParams.get('keyword') || '';
+    const pageSize: string = searchParams.get('pageSize') || '30';
 
     if (keyword) {
-      // eslint-disable-next-line no-console
-      console.log('===keyword', keyword);
       const fetchSearchResultList = async (): Promise<SearchApiResponse> => getSearchResultList({
         keyword,
         page,
@@ -48,8 +32,6 @@ export default async function Result({
       });
 
       fetchSearchResultList().then((response: SearchApiResponse): void => {
-        // eslint-disable-next-line no-console
-        console.log('===then', response);
         const { data, total }: { data: SearchType[]; total: number } = response;
         setSearchResultList((currentSearchResultList: SearchType[]) => [
           ...currentSearchResultList,
