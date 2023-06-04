@@ -25,3 +25,18 @@ body {
   box-shadow: inset 0 0.5px 0 rgba(0, 0, 0, 0.8);
   backdrop-filter: blur(27.1828px);
 }
+
+.MuiTextField-root.aha-text-field > div.MuiOutlinedInput-root {
+  @apply rounded-md border-[3px] border-white/[.5];
+}
+.MuiTextField-root.aha-text-field > div.MuiOutlinedInput-root.Mui-focused {
+  @apply border-aha-orange-400;
+}
+.MuiTextField-root.aha-text-field > div.MuiOutlinedInput-root > input {
+  @apply h-[21px] px-[18px] pb-[19px] pt-5 text-sm leading-[21px] tracking-[0.25px] text-white;
+}
+.MuiTextField-root.aha-text-field
+  > div.MuiOutlinedInput-root.Mui-focused
+  > fieldset {
+  @apply border-none;
+}

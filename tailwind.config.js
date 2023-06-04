@@ -27,6 +27,9 @@ module.exports = {
           400: '#B2B2B2',
           600: '#929292',
         },
+        'aha-orange': {
+          400: '#FF9B33',
+        },
       },
       fontFamily: {
         sans: ['Ubuntu', 'Open Sans', ...defaultTheme.fontFamily.sans],
