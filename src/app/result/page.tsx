@@ -2,19 +2,16 @@
 
 import Loading from '@/app/result/loading.tsx';
 import { getSearchResultList } from '@/app/ui/home/services/SearchService.ts';
-import { SearchFilterType } from '@/app/ui/home/types/SearchFilterType.ts';
 import { SearchType } from '@/app/ui/home/types/SearchType.ts';
 import Button from '@/app/ui/shared/components/Button.tsx';
 import { ImageWithFallback } from '@/app/ui/shared/components/ImageWithFallback.tsx';
 import { SearchApiResponse } from '@/common/contract.ts';
 import { fallbackImgSrc } from '@/common/helper.ts';
+import { ReadonlyURLSearchParams, useSearchParams } from 'next/navigation';
 import React, { Suspense, useEffect, useState } from 'react';
 
-export default async function Result({
-  searchParams,
-}: {
-  searchParams: SearchFilterType;
-}): Promise<React.JSX.Element> {
+export default async function Result(): Promise<React.JSX.Element> {
+  const searchParams: ReadonlyURLSearchParams = useSearchParams();
   const [page, setPage] = useState('1');
   const [totalResult, setTotalResult] = useState(0);
   const [searchResultList, setSearchResultList] = useState([] as SearchType[]);
@@ -24,7 +21,8 @@ export default async function Result({
   };
 
   useEffect(() => {
-    const { keyword, pageSize }: SearchFilterType = searchParams;
+    const keyword: string = searchParams.get('keyword') || '';
+    const pageSize: string = searchParams.get('pageSize') || '30';
 
     if (keyword) {
       const fetchSearchResultList = async (): Promise<SearchApiResponse> => getSearchResultList({
