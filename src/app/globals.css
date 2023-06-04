@@ -8,6 +8,7 @@ body {
   @apply bg-aha-black-400 text-white;
 }
 
+/* Navigation */
 .aha-logo {
   @apply block h-[15px] w-[35px] text-[13px] font-bold leading-[15px] tracking-tighter;
 
@@ -17,7 +18,6 @@ body {
   background-clip: text;
   text-fill-color: transparent;
 }
-
 .aha-nav-bottom {
   @apply flex h-full items-center justify-center gap-[50px];
 
@@ -25,7 +25,9 @@ body {
   box-shadow: inset 0 0.5px 0 rgba(0, 0, 0, 0.8);
   backdrop-filter: blur(27.1828px);
 }
+/* END OF: Navigation */
 
+/* Text Field */
 .MuiTextField-root.aha-text-field > div.MuiOutlinedInput-root {
   @apply rounded-md border-[3px] border-white/[.5];
 }
@@ -40,7 +42,9 @@ body {
   > fieldset {
   @apply border-none;
 }
+/* END OF: Text Field */
 
+/* Slider */
 .MuiSlider-root.aha-slider .MuiSlider-rail {
   @apply h-2 bg-white/[.3];
 }
@@ -50,15 +54,24 @@ body {
 .MuiSlider-root.aha-slider .MuiSlider-thumbColorPrimary {
   @apply h-[26px] w-[26px] border-[6px] border-aha-yellow-350 bg-aha-black-300;
 }
-.MuiSlider-root.aha-slider .Mui-active {
+.MuiSlider-root.aha-slider .Mui-active,
+.MuiSlider-root.aha-slider .MuiSlider-thumb {
   @apply shadow-none;
 }
 .MuiSlider-root.aha-slider .MuiSlider-mark {
   @apply hidden;
 }
 .MuiSlider-root.aha-slider .MuiSlider-markLabel {
-  @apply text-sm leading-[21px] tracking-[0.25px] text-white/[.5];
+  @apply text-sm leading-[21px] tracking-[0.25px];
 }
 .MuiSlider-root.aha-slider .MuiSlider-markLabelActive {
-  @apply text-sm leading-[21px] tracking-[0.25px] text-white;
+  @apply text-sm leading-[21px] tracking-[0.25px];
 }
+
+/* Manually defined: MUI always override all classes once "active" */
+@media (min-width: 376px) {
+  .MuiSlider-root.aha-slider .MuiSlider-markLabel {
+    @apply text-base font-medium leading-6 tracking-[0.15px];
+  }
+}
+/* END OF: Slider */

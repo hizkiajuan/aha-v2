@@ -1,5 +1,7 @@
+'use client';
+
 import { Slider } from '@mui/material';
-import React from 'react';
+import React, { useEffect } from 'react';
 
 type SearchConfigPropType = {
   handleChangePageSize: (e: Event) => void;
@@ -22,6 +24,30 @@ export default function SearchConfig(
     { value: 15, label: '15' },
     { value: 50, label: '50' },
   ];
+
+  useEffect(() => {
+    const markLabel = document.querySelectorAll(
+      '.MuiSlider-root.aha-slider .MuiSlider-markLabel',
+    );
+    markLabel.forEach((ml: Element): void => {
+      // eslint-disable-next-line no-param-reassign
+      (ml as HTMLElement).style.color = '#FFF';
+      // eslint-disable-next-line no-param-reassign
+      (ml as HTMLElement).style.opacity = '0.5';
+    });
+
+    const markLabelActive = document.querySelectorAll(
+      '.MuiSlider-root.aha-slider .MuiSlider-markLabelActive',
+    );
+    markLabelActive.forEach((mla: Element): void => {
+      if (+mla.innerHTML === +props.pageSize) {
+        // eslint-disable-next-line no-param-reassign
+        (mla as HTMLElement).style.color = '#FFF';
+        // eslint-disable-next-line no-param-reassign
+        (mla as HTMLElement).style.opacity = '1';
+      }
+    });
+  });
 
   return (
     <section className="flex flex-col">
