@@ -19,3 +19,5 @@ export const fallbackImgSrc = (idx: number): string => {
 
   return path;
 };
+
+export const getDummyArray = (length: number): number[] => Array.from(Array(length).keys());
