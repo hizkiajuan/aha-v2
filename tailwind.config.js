@@ -29,6 +29,11 @@ module.exports = {
         },
         'aha-orange': {
           400: '#FF9B33',
+          800: '#FF5C01',
+        },
+        'aha-yellow': {
+          350: '#FFD05D',
+          400: '#FFD25F',
         },
       },
       fontFamily: {

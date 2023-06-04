@@ -40,3 +40,25 @@ body {
   > fieldset {
   @apply border-none;
 }
+
+.MuiSlider-root.aha-slider .MuiSlider-rail {
+  @apply h-2 bg-white/[.3];
+}
+.MuiSlider-root.aha-slider .MuiSlider-track {
+  @apply h-2 border-none bg-gradient-to-r from-aha-orange-800 to-aha-yellow-400;
+}
+.MuiSlider-root.aha-slider .MuiSlider-thumbColorPrimary {
+  @apply h-[26px] w-[26px] border-[6px] border-aha-yellow-350 bg-aha-black-300;
+}
+.MuiSlider-root.aha-slider .Mui-active {
+  @apply shadow-none;
+}
+.MuiSlider-root.aha-slider .MuiSlider-mark {
+  @apply hidden;
+}
+.MuiSlider-root.aha-slider .MuiSlider-markLabel {
+  @apply text-sm leading-[21px] tracking-[0.25px] text-white/[.5];
+}
+.MuiSlider-root.aha-slider .MuiSlider-markLabelActive {
+  @apply text-sm leading-[21px] tracking-[0.25px] text-white;
+}

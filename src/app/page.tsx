@@ -14,8 +14,8 @@ export default function Home(): React.JSX.Element {
   const handleChangeKeyword = (e: React.SyntheticEvent): void => {
     setKeyword((e.target as HTMLInputElement).value.trim());
   };
-  const handleChangePageSize = (e: { target: HTMLInputElement }): void => {
-    setPageSize(e.target.value);
+  const handleChangePageSize = (e: Event): void => {
+    setPageSize((e.target as HTMLInputElement).value);
   };
 
   const router: AppRouterInstance = useRouter();
