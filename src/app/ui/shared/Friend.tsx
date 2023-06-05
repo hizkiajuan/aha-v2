@@ -3,6 +3,8 @@
 import Button from '@/app/ui/shared/components/Button.tsx';
 import { ImageWithFallback } from '@/app/ui/shared/components/ImageWithFallback.tsx';
 import { TabPanel } from '@/app/ui/shared/components/TabPanel.tsx';
+import { TabPanelFollower } from '@/app/ui/shared/components/TabPanelFollower.tsx';
+import { TabPanelFollowing } from '@/app/ui/shared/components/TabPanelFollowing.tsx';
 import { FriendType } from '@/app/ui/shared/types/FriendType.ts';
 import { fallbackImgSrc } from '@/common/helper.ts';
 import {
@@ -16,11 +18,6 @@ import {
 import { usePathname } from 'next/navigation';
 import React, { useState } from 'react';
 
-type FriendParamType = {
-  followerList: FriendType[];
-  followingList: FriendType[];
-};
-
 const theme: Theme = createTheme({
   palette: {
     primary: {
@@ -32,10 +29,7 @@ const theme: Theme = createTheme({
   },
 });
 
-export default function Friend({
-  followerList,
-  followingList,
-}: FriendParamType): React.JSX.Element {
+export default function Friend(): React.JSX.Element {
   const pathname: string = usePathname();
   const lgClass: string = pathname === '/tag' ? '' : 'lg:flex';
 
@@ -49,11 +43,13 @@ export default function Friend({
       'text-aha-grey-600 capitalize text-base tracking-[0.15px] font-normal',
   };
 
-  // eslint-disable-next-line no-console
-  const handleFollow = (): void => console.log('action:follow');
-  // eslint-disable-next-line no-console
-  const handleUnfollow = (): void => console.log('action:unfollow');
-  const renderFriendList = (friendList: FriendType[]) => friendList.map((f: FriendType) => (
+  const renderFriendList = (friendList: FriendType[]) => {
+    // eslint-disable-next-line no-console
+    const handleFollow = (): void => console.log('action:follow');
+    // eslint-disable-next-line no-console
+    const handleUnfollow = (): void => console.log('action:unfollow');
+
+    return friendList.map((f: FriendType) => (
       <div className="flex items-center justify-between" key={f.id}>
         <div className="flex items-center">
           <ImageWithFallback
@@ -79,19 +75,20 @@ export default function Friend({
           <Button action={handleFollow} variant="outlined" text="Follow" />
         )}
       </div>
-  ));
+    ));
+  };
 
   return (
     <aside
-      className={`flex flex-col ${lgClass} hidden max-h-screen w-[375px] overflow-y-auto bg-aha-black-300`}
+      className={`flex flex-col ${lgClass} hidden max-h-screen w-[375px] overflow-y-auto bg-aha-black-300 pb-[35px]`}
     >
       <ThemeProvider theme={theme}>
-        <Box sx={{ borderBottom: 1, borderColor: 'divider', width: 'auto' }}>
+        <Box>
           <Tabs
             value={tab}
             onChange={handleChange}
             indicatorColor="primary"
-            className="fixed w-full grid-cols-2 !gap-0 bg-aha-black-300"
+            className="fixed z-10 w-full grid-cols-2 gap-0 bg-aha-black-300"
           >
             <Tab
               label="Followers"
@@ -110,10 +107,10 @@ export default function Friend({
           </Tabs>
         </Box>
         <TabPanel value={tab} index={0}>
-          {renderFriendList(followerList)}
+          <TabPanelFollower renderer={renderFriendList} />
         </TabPanel>
         <TabPanel value={tab} index={1}>
-          {renderFriendList(followingList)}
+          <TabPanelFollowing renderer={renderFriendList} />
         </TabPanel>
       </ThemeProvider>
     </aside>

@@ -3,18 +3,18 @@ import Friend from '@/app/ui/shared/Friend.tsx';
 import NavigationDesktop from '@/app/ui/shared/Navigation.tsx';
 import Footer from '@/app/ui/shared/mobile/Footer.tsx';
 import Header from '@/app/ui/shared/mobile/Header.tsx';
-import { getFriendList } from '@/app/ui/shared/services/FriendService.ts';
-import { FriendType } from '@/app/ui/shared/types/FriendType.ts';
+import { Metadata } from 'next';
 import React from 'react';
 
-export default async function RootLayout({
+export const metadata: Metadata = {
+  title: 'Aha',
+};
+
+export default function RootLayout({
   children,
 }: {
   children: React.ReactNode;
-}): Promise<React.JSX.Element> {
-  const followerList: FriendType[] = await getFriendList(false);
-  const followingList: FriendType[] = await getFriendList(true);
-
+}): React.JSX.Element {
   return (
     <html lang="en">
       <body>
@@ -22,7 +22,7 @@ export default async function RootLayout({
           <Header />
           <NavigationDesktop />
           {children}
-          <Friend followerList={followerList} followingList={followingList} />
+          <Friend />
           <Footer />
         </main>
       </body>
