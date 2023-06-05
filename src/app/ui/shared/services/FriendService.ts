@@ -1,5 +1,6 @@
 import { FriendFilterType } from '@/app/ui/shared/types/FriendFilterType.ts';
 import { FriendApiResponse } from '@/common/contract.ts';
+import { handleError } from '@/common/error.ts';
 import http from '@/common/http.ts';
 
 export async function getFriendList(
@@ -12,8 +13,7 @@ export async function getFriendList(
   );
 
   if (!response.ok) {
-    // This will activate the closest `error.js` Error Boundary
-    throw new Error('Failed to fetch friend list');
+    handleError('Friend List');
   }
 
   return response.json();
