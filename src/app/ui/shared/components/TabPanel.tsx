@@ -7,12 +7,10 @@ type TabPanelPropType = {
 };
 
 export function TabPanel(props: TabPanelPropType): React.JSX.Element {
-  const {
-    children, value, index, ...other
-  } = props;
+  const { children, value, index, ...other } = props;
   const className = `${
-    index === 0 && 'mt-[97px]'
-  } px-4 flex flex-col gap-[21px] justify-center`;
+    index === 0 && 'mt-[100px]'
+  } pl-4 pr-[14px] flex flex-col gap-[21px] justify-center`;
 
   return (
     <div

@@ -1,6 +1,6 @@
 import './globals.css';
 import Friend from '@/app/ui/shared/Friend.tsx';
-import NavigationDesktop from '@/app/ui/shared/Navigation.tsx';
+import Navigation from '@/app/ui/shared/Navigation.tsx';
 import Footer from '@/app/ui/shared/mobile/Footer.tsx';
 import Header from '@/app/ui/shared/mobile/Header.tsx';
 import { Metadata } from 'next';
@@ -20,7 +20,7 @@ export default function RootLayout({
       <body>
         <main className="flex h-screen flex-col justify-between sm:flex-row">
           <Header />
-          <NavigationDesktop />
+          <Navigation />
           {children}
           <Friend />
           <Footer />

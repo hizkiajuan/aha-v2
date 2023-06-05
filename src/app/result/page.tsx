@@ -25,11 +25,12 @@ export default async function Result(): Promise<React.JSX.Element> {
     const pageSize: string = searchParams.get('pageSize') || '30';
 
     if (keyword) {
-      const fetchSearchResultList = async (): Promise<SearchApiResponse> => getSearchResultList({
-        keyword,
-        page,
-        pageSize,
-      });
+      const fetchSearchResultList = async (): Promise<SearchApiResponse> =>
+        getSearchResultList({
+          keyword,
+          page,
+          pageSize,
+        });
 
       fetchSearchResultList().then((response: SearchApiResponse): void => {
         const { data, total }: { data: SearchType[]; total: number } = response;
@@ -43,11 +44,11 @@ export default async function Result(): Promise<React.JSX.Element> {
   }, [page, searchParams]);
 
   return (
-    <div className="px-5 pb-6 sm:px-[130px]">
+    <div className="flex grow flex-col justify-between px-5 pb-6 sm:px-[130px]">
       <article className="grid grid-cols-1 sm:mb-10 sm:grid-cols-3 sm:gap-x-[34px] sm:gap-y-10">
         <Suspense fallback={<Loading />}>
           {searchResultList.map((searchResult: SearchType, idx: number) => (
-            <div key={searchResult.id} className="mb-10 sm:mb-0">
+            <div key={searchResult.id} className="mb-[36px] sm:mb-0">
               <ImageWithFallback
                 src={searchResult.avater}
                 fallbackSrc={fallbackImgSrc(idx)}
@@ -55,7 +56,7 @@ export default async function Result(): Promise<React.JSX.Element> {
                 width={335}
                 height={222.67}
               />
-              <h2 className="mt-5 truncate text-[15px] leading-[22px] tracking-[0.14px]">
+              <h2 className="mt-6 truncate text-[15px] leading-[14px] tracking-[0.14px] sm:mt-3 sm:leading-[21px]">
                 {searchResult.name}
               </h2>
               <label className="text-[11px] leading-[17px] tracking-[0.37px] text-aha-grey-400">

@@ -15,6 +15,7 @@ export const ImageWithFallback = (props: any) => {
       }}
       placeholder="blur"
       blurDataURL={`data:image/png;base64,${LOADING_INDICATOR}`}
+      className="aha-img"
       {...rest}
     />
   );
