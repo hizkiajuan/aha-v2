@@ -1,10 +1,25 @@
+'use client';
+
 import Loading from '@/app/tag/loading.tsx';
 import { getTagList } from '@/app/tag/services/TagService.ts';
 import { TagApiResponse } from '@/common/contract.ts';
-import React, { Suspense } from 'react';
+import React, { Suspense, useEffect, useState } from 'react';
 
-export default async function Tag(): Promise<React.JSX.Element> {
-  const tagList: TagApiResponse[] = await getTagList();
+export default function Tag(): React.JSX.Element {
+  const [tagList, setTagList] = useState([] as TagApiResponse[]);
+
+  useEffect(() => {
+    if (tagList.length === 0) {
+      const fetchTagList = async (): Promise<TagApiResponse[]> => getTagList();
+
+      fetchTagList().then((response: TagApiResponse[]): void => {
+        setTagList((currentTagList: TagApiResponse[]) => [
+          ...currentTagList,
+          ...response,
+        ]);
+      });
+    }
+  });
 
   return (
     <div className="px-[25px] pb-6 sm:px-8 md:px-32 lg:px-[257px]">
