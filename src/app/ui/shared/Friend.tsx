@@ -51,19 +51,23 @@ export default function Friend(): React.JSX.Element {
 
     return friendList.map((f: FriendType) => (
       <div className="flex items-center justify-between" key={f.id}>
-        <div className="flex items-center">
+        <div className="flex grow items-center">
           <ImageWithFallback
-            src={fallbackImgSrc(-1)}
+            src={f.avater}
             fallbackSrc={fallbackImgSrc(-1)}
             alt={f.name}
             width={40}
             height={40}
             className="self-center rounded-[5px]"
           />
-          <p className="ml-[15px] flex flex-col text-base tracking-[0.15px]">
-            <span>{f.name}</span>
-            <span className="text-sm opacity-50">@{f.username}</span>
-          </p>
+          <div className="ml-[15px] flex grow flex-col gap-y-[8px]">
+            <span className="text-[16px] leading-[14px] tracking-[0.15px]">
+              {f.name}
+            </span>
+            <span className="text-[14px] leading-[14px] opacity-50">
+              @{f.username}
+            </span>
+          </div>
         </div>
         {f.isFollowing ? (
           <Button
@@ -95,14 +99,14 @@ export default function Friend(): React.JSX.Element {
               id="tab-0"
               className={`${
                 tab === 0 ? tabClass.selected : tabClass.unselected
-              } h-[65px] w-[188px]`}
+              } mt-[3px] flex h-[65px] w-[187px] justify-end`}
             />
             <Tab
               label="Following"
               id="tab-1"
               className={`${
                 tab === 1 ? tabClass.selected : tabClass.unselected
-              } h-[65px] w-[188px]`}
+              } mt-[3px] flex h-[65px] w-[187px] justify-end`}
             />
           </Tabs>
         </Box>

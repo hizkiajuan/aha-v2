@@ -24,11 +24,14 @@ export default function Navigation(): React.JSX.Element {
       {navLinks.map((link: NavLinkType) => {
         const isHomeLink: boolean = link.name === 'Home';
         const isResultPage: boolean = pathname === '/result';
-        const isActive: boolean = pathname === link.href || (isHomeLink && isResultPage);
+        const isActive: boolean =
+          pathname === link.href || (isHomeLink && isResultPage);
 
         return (
           <Link
-            className="-mt-[1px] flex flex-col items-center pl-[1px]"
+            className={`${
+              isActive && link.name === 'Tags' ? 'mt-[17px]' : '-mt-[1px]'
+            } flex flex-col items-center pl-[1px]`}
             href={link.href}
             key={link.name}
           >

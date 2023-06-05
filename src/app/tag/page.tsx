@@ -23,7 +23,7 @@ export default function Tag(): React.JSX.Element {
 
   return (
     <div className="px-[25px] pb-6 sm:px-8 md:px-32 lg:px-[257px]">
-      <article className="grid grid-cols-2 gap-6 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-5">
+      <article className="grid grid-cols-2 gap-6 sm:grid-cols-2 sm:gap-y-[30px] md:grid-cols-4 lg:grid-cols-5">
         <Suspense fallback={<Loading />}>
           {tagList.map((tag: TagApiResponse) => (
             <div key={tag.id} className="w-[150px]">
@@ -32,10 +32,10 @@ export default function Tag(): React.JSX.Element {
                   {tag.name}
                 </p>
               </div>
-              <h2 className="mt-5 truncate text-[15px] leading-[22px] tracking-[0.14px]">
+              <h2 className="mt-4 truncate text-[15px] leading-[10px] tracking-[0.14px] sm:mt-[12px] sm:leading-[18.35px]">
                 {tag.name}
               </h2>
-              <label className="text-[11px] leading-[17px] tracking-[0.37px] text-aha-grey-400">
+              <label className="text-[11px] leading-[17px] tracking-[0.37px] text-aha-grey-400 sm:text-[12px] sm:leading-[16.76px]">
                 {tag.count} Questions
               </label>
             </div>

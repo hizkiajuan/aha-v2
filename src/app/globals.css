@@ -7,7 +7,6 @@
 body {
   @apply bg-aha-black-400 text-white;
 }
-
 /* Navigation */
 .aha-logo {
   @apply block h-[15px] w-[35px] text-[13px] font-bold leading-[15px] tracking-tighter;
@@ -29,13 +28,13 @@ body {
 
 /* Text Field */
 .MuiTextField-root.aha-text-field > div.MuiOutlinedInput-root {
-  @apply rounded-md border-[3px] border-white/[.5];
+  @apply h-[60px] rounded-md border-[3px] border-white/[.5];
 }
 .MuiTextField-root.aha-text-field > div.MuiOutlinedInput-root.Mui-focused {
   @apply border-aha-orange-400;
 }
 .MuiTextField-root.aha-text-field > div.MuiOutlinedInput-root > input {
-  @apply h-[21px] px-[18px] pb-[19px] pt-5 text-sm leading-[21px] tracking-[0.25px] text-white;
+  @apply h-[21px] pb-[19px] pl-[15px] pr-[18px] pt-5 text-sm leading-[21px] tracking-[0.25px] text-white;
 }
 .MuiTextField-root.aha-text-field
   > div.MuiOutlinedInput-root.Mui-focused
@@ -45,6 +44,9 @@ body {
 /* END OF: Text Field */
 
 /* Slider */
+.MuiSlider-root.aha-slider {
+  @apply -ml-[4px] w-[343px] pt-[34px] sm:ml-0 sm:w-full;
+}
 .MuiSlider-root.aha-slider .MuiSlider-rail {
   @apply h-2 bg-white/[.3];
 }
@@ -62,7 +64,7 @@ body {
   @apply hidden;
 }
 .MuiSlider-root.aha-slider .MuiSlider-markLabel {
-  @apply text-sm leading-[21px] tracking-[0.25px];
+  @apply mt-2 text-sm leading-[21px] tracking-[0.25px];
 }
 .MuiSlider-root.aha-slider .MuiSlider-markLabelActive {
   @apply text-sm leading-[21px] tracking-[0.25px];
@@ -75,3 +77,11 @@ body {
   }
 }
 /* END OF: Slider */
+
+/* Image */
+@media (min-width: 376px) {
+  .aha-img {
+    @apply h-[146px] w-[219px];
+  }
+}
+/* END OF: Image */

@@ -31,7 +31,7 @@ export default function Home(): React.JSX.Element {
   };
 
   return (
-    <section className="flex grow flex-col justify-between px-5 sm:mt-[54px] sm:px-[130px] sm:pb-[87px]">
+    <section className="flex grow flex-col justify-between px-5 sm:-mt-[16px] sm:px-[130px] sm:pb-[87px]">
       <div>
         <Search handleChangeKeyword={handleChangeKeyword} />
         <SearchConfig
