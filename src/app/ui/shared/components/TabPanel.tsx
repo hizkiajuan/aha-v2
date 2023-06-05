@@ -1,12 +1,12 @@
 import React from 'react';
 
-interface TabPanelProps {
+type TabPanelPropType = {
   children?: React.ReactNode;
   index: number;
   value: number;
-}
+};
 
-export function TabPanel(props: TabPanelProps): React.JSX.Element {
+export function TabPanel(props: TabPanelPropType): React.JSX.Element {
   const {
     children, value, index, ...other
   } = props;

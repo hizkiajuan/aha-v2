@@ -1,16 +1,14 @@
-import { FriendType } from '@/app/ui/shared/types/FriendType.ts';
+import { FriendFilterType } from '@/app/ui/shared/types/FriendFilterType.ts';
 import { FriendApiResponse } from '@/common/contract.ts';
 import http from '@/common/http.ts';
 
 export async function getFriendList(
   isFollowing: boolean,
-): Promise<FriendType[]> {
+  params: FriendFilterType,
+): Promise<FriendApiResponse> {
   const response: Response = await http.get(
     `api/users/${isFollowing ? 'friends' : 'all'}`,
-    {
-      page: 1,
-      pageSize: 10,
-    },
+    params,
   );
 
   if (!response.ok) {
@@ -18,7 +16,5 @@ export async function getFriendList(
     throw new Error('Failed to fetch friend list');
   }
 
-  const { data }: FriendApiResponse = await response.json();
-
-  return data;
+  return response.json();
 }
