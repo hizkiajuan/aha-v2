@@ -16,7 +16,7 @@ import {
   createTheme,
 } from '@mui/material';
 import { usePathname } from 'next/navigation';
-import React, { useState } from 'react';
+import React, { Ref, useState } from 'react';
 
 const theme: Theme = createTheme({
   palette: {
@@ -43,17 +43,17 @@ export default function Friend(): React.JSX.Element {
       'text-aha-grey-600 capitalize text-base tracking-[0.15px] font-normal',
   };
 
-  const renderFriendList = (friendList: FriendType[]) => {
+  const renderFriendList = (friendList: FriendType[], ref: Ref<any>) => {
     // eslint-disable-next-line no-console
     const handleFollow = (): void => console.log('action:follow');
     // eslint-disable-next-line no-console
     const handleUnfollow = (): void => console.log('action:unfollow');
 
     return friendList.map((f: FriendType) => (
-      <div className="flex items-center justify-between" key={f.id}>
+      <div className="flex items-center justify-between" key={f.id} ref={ref}>
         <div className="flex grow items-center">
           <ImageWithFallback
-            src={f.avater}
+            src={fallbackImgSrc(-1)}
             fallbackSrc={fallbackImgSrc(-1)}
             alt={f.name}
             width={40}
