@@ -12,9 +12,9 @@ export default function Loading(): React.JSX.Element {
           <div key={i} className="mb-10 sm:mb-0">
             <Skeleton
               variant="rectangular"
-              width={335}
-              height={222.67}
-              className="bg-aha-grey-600"
+              width={219}
+              height={146}
+              className="aha-img bg-aha-grey-600"
             />
             <Skeleton
               variant="text"
