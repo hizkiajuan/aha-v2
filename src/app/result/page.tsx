@@ -25,12 +25,11 @@ export default async function Result(): Promise<React.JSX.Element> {
     const pageSize: string = searchParams.get('pageSize') || '30';
 
     if (keyword) {
-      const fetchSearchResultList = async (): Promise<SearchApiResponse> =>
-        getSearchResultList({
-          keyword,
-          page,
-          pageSize,
-        });
+      const fetchSearchResultList = async (): Promise<SearchApiResponse> => getSearchResultList({
+        keyword,
+        page,
+        pageSize,
+      });
 
       fetchSearchResultList().then((response: SearchApiResponse): void => {
         const { data, total }: { data: SearchType[]; total: number } = response;

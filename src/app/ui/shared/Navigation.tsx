@@ -24,8 +24,7 @@ export default function Navigation(): React.JSX.Element {
       {navLinks.map((link: NavLinkType) => {
         const isHomeLink: boolean = link.name === 'Home';
         const isResultPage: boolean = pathname === '/result';
-        const isActive: boolean =
-          pathname === link.href || (isHomeLink && isResultPage);
+        const isActive: boolean = pathname === link.href || (isHomeLink && isResultPage);
 
         return (
           <Link
