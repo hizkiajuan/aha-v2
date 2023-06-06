@@ -8,7 +8,9 @@ import { ImageWithFallback } from '@/app/ui/shared/components/ImageWithFallback.
 import { SearchApiResponse } from '@/common/contract.ts';
 import { fallbackImgSrc } from '@/common/helper.ts';
 import { ReadonlyURLSearchParams, useSearchParams } from 'next/navigation';
-import React, { Suspense, useEffect, useState } from 'react';
+import React, {
+  Suspense, useEffect, useRef, useState,
+} from 'react';
 
 export default async function Result(): Promise<React.JSX.Element> {
   const searchParams: ReadonlyURLSearchParams = useSearchParams();
@@ -16,15 +18,34 @@ export default async function Result(): Promise<React.JSX.Element> {
   const [totalResult, setTotalResult] = useState(0);
   const [searchResultList, setSearchResultList] = useState([] as SearchType[]);
 
+  const ref = useRef<HTMLDivElement>(null);
+  const [isFetchDone, setIsFetchDone] = useState(false);
+  const [isNextPageAvailable, setIsNextPageAvailable] = useState(true);
+
   const handleLoadMore = (): void => {
     setPage(`${+page + 1}`);
+    setIsFetchDone(false);
   };
 
   useEffect(() => {
+    // Infinite loading
+    const observer: IntersectionObserver = new IntersectionObserver(
+      ([entry]): void => {
+        if (entry.isIntersecting && isFetchDone) {
+          setPage(`${+page + 1}`);
+          setIsFetchDone(false);
+          observer.unobserve(entry.target);
+        }
+      },
+    );
+
+    if (ref.current) observer.observe(ref.current);
+
+    // Fetch data
     const keyword: string = searchParams.get('keyword') || '';
     const pageSize: string = searchParams.get('pageSize') || '30';
 
-    if (keyword) {
+    if (keyword && !isFetchDone && isNextPageAvailable) {
       const fetchSearchResultList = async (): Promise<SearchApiResponse> => getSearchResultList({
         keyword,
         page,
@@ -38,16 +59,23 @@ export default async function Result(): Promise<React.JSX.Element> {
           ...data,
         ]);
         setTotalResult(total);
+
+        if (data.length > 0) {
+          setIsNextPageAvailable(true);
+          setIsFetchDone(true);
+        } else {
+          setIsNextPageAvailable(false);
+        }
       });
     }
-  }, [page, searchParams]);
+  }, [page, searchParams, isFetchDone, isNextPageAvailable]);
 
   return (
     <div className="flex grow flex-col justify-between px-5 pb-6 sm:px-[130px]">
       <article className="grid grid-cols-1 sm:mb-10 sm:grid-cols-3 sm:gap-x-[34px] sm:gap-y-10">
         <Suspense fallback={<Loading />}>
           {searchResultList.map((searchResult: SearchType, idx: number) => (
-            <div key={searchResult.id} className="mb-[36px] sm:mb-0">
+            <div key={searchResult.id} ref={ref} className="mb-[36px] sm:mb-0">
               <ImageWithFallback
                 src={searchResult.avater}
                 fallbackSrc={fallbackImgSrc(idx)}

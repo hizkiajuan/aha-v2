@@ -53,7 +53,7 @@ export default function Friend(): React.JSX.Element {
       <div className="flex items-center justify-between" key={f.id} ref={ref}>
         <div className="flex grow items-center">
           <ImageWithFallback
-            src={fallbackImgSrc(-1)}
+            src={f.avater}
             fallbackSrc={fallbackImgSrc(-1)}
             alt={f.name}
             width={40}
